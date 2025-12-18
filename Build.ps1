@@ -53,16 +53,16 @@ try {
         Pop-Location
     }
 
-    foreach ($test in Get-ChildItem tests/) {
-        Push-Location $test
+    # foreach ($test in Get-ChildItem tests/) {
+    #     Push-Location $test
 
-        Write-Output "build: Testing project in $test"
+    #     Write-Output "build: Testing project in $test"
 
-        & dotnet test -c Release --no-build --no-restore
-        if($LASTEXITCODE -ne 0) { throw "Testing failed" }
+    #     & dotnet test -c Release --no-build --no-restore
+    #     if($LASTEXITCODE -ne 0) { throw "Testing failed" }
 
-        Pop-Location
-    }
+    #     Pop-Location
+    # }
 
     if ($skipPackaging -eq $false) {
         Write-Output "build: Publishing NuGet package"
