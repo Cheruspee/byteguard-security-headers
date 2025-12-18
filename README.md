@@ -1,10 +1,10 @@
 # ByteGuard.SecurityHeaders ![NuGet Version](https://img.shields.io/nuget/v/ByteGuard.SecurityHeaders)
 
-**ByteGuard.SecurityHeaders** is a lightweight security-focused middleware package for adding a baseline set of security response headers to **ASP.NET Core REST APIs**.
+**ByteGuard.SecurityHeaders** is a lightweight security-focused middleware package for adding a baseline set of security response headers to **ASP.NET Core projects**.
 
 It gives you:
 
-- A single `app.UseDefaultSecurityHeaders()` call to apply sane defaults
+- A single `app.UseDefaultApiSecurityHeaders()` call to apply sane defaults
 - OWASP-inspired header values based on the REST Security Cheat Sheet
 - An `Enforce` option to ensure the standard values are applied even if set elsewhere
 
@@ -17,7 +17,7 @@ It gives you:
 - ✅ OWASP-inspired defaults for REST APIs
 - ✅ Non-breaking by default (does not override existing headers)
 - ✅ Optional **enforcement mode** to overwrite existing values
-- ✅ Minimal setup (`UseDefaultSecurityHeaders`)
+- ✅ Minimal setup (`UseDefaultApiSecurityHeaders`)
 
 ## Getting Started
 
@@ -40,7 +40,7 @@ Add the middleware early in your pipeline:
 ```csharp
 var app = builder.Build();
 
-app.UseDefaultSecurityHeaders();
+app.UseDefaultApiSecurityHeaders();
 
 app.MapControllers();
 app.Run();
@@ -51,7 +51,7 @@ app.Run();
 By default, the middleware will not override headers that are already present. If you want to ensure the standard values are always used (even if other middleware/controllers set them), enable enforcement:
 
 ```csharp
-app.UseDefaultSecurityHeaders(options =>
+app.UseDefaultApiSecurityHeaders(options =>
 {
     options.Enforce = true;
 });

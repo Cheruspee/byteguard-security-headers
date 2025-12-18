@@ -8,14 +8,14 @@ namespace ByteGuard.SecurityHeaders;
 public static class SecurityHeadersMiddleware
 {
     /// <summary>
-    /// Add default security headers middleware.
+    /// Add default API security headers middleware.
     /// </summary>
     /// <remarks>
     /// Adds a small baseline set of <see href="https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html#security-headers">OWASP-inspired</see> security headers suitable for many REST APIs.
     /// </remarks>
     /// <param name="app">Application builder.</param>
-    public static IApplicationBuilder UseDefaultSecurityHeaders(this IApplicationBuilder app) =>
-        app.UseDefaultSecurityHeaders(_ => { });
+    public static IApplicationBuilder UseDefaultApiSecurityHeaders(this IApplicationBuilder app) =>
+        app.UseDefaultApiSecurityHeaders(_ => { });
 
     /// <summary>
     /// Add default security headers middleware.
@@ -25,12 +25,12 @@ public static class SecurityHeadersMiddleware
     /// </remarks>
     /// <param name="app">Application builder.</param>
     /// <param name="configure">Security headers configuration.</param>
-    public static IApplicationBuilder UseDefaultSecurityHeaders(this IApplicationBuilder app, Action<SecurityHeadersConfiguration> configure)
+    public static IApplicationBuilder UseDefaultApiSecurityHeaders(this IApplicationBuilder app, Action<ApiSecurityHeadersConfiguration> configure)
     {
         ArgumentNullException.ThrowIfNull(app);
         ArgumentNullException.ThrowIfNull(configure);
 
-        var config = new SecurityHeadersConfiguration();
+        var config = new ApiSecurityHeadersConfiguration();
         configure(config);
 
         return app.Use(async (context, next) =>
